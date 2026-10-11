@@ -1,7 +1,5 @@
 # IC-6821 — Diseño de Software
 
-<p align="center">🌐</p>
-
 <p align="center">
   <img alt="Java" src="https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white">
   <img alt="Gradle" src="https://img.shields.io/badge/Gradle-02303A?style=flat-square&logo=gradle&logoColor=white">
