@@ -1,0 +1,51 @@
+package edu.byohttp.response;
+
+import edu.byohttp.date.DateFormatter;
+import edu.byohttp.date.HttpDateFormatter;
+import edu.byohttp.resource.ClasspathResourceFetcher;
+import edu.byohttp.resource.Resource;
+import edu.byohttp.resource.ResourceFetcher;
+import edu.byohttp.response.mapper.HttpStatus;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import java.util.Optional;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public final class ServerErrorResponseCreatorTest {
+    private static ResourceFetcher fetcher;
+    private static DateFormatter formatter;
+    private static ResponseCreator controller;
+
+    private static final String ERROR_FILE = "/500.html";
+    private static final String HTTP_VERSION = "HTTP/1.1";
+    private static final String HEADER_CONTENT_TYPE_KEY = "Content-Type";
+    private static final String HEADER_CONTENT_TYPE_VALUE = "text/html";
+    private static final String HEADER_CONTENT_LENGTH_KEY = "Content-Length";
+
+    @BeforeAll
+    static void setup() {
+        fetcher = new ClasspathResourceFetcher();
+        formatter = new HttpDateFormatter();
+        controller = new ServerErrorResponseCreator(fetcher, formatter);
+    }
+
+    @Test
+    public void createValidTest() {
+        // given
+
+        // when
+        final Optional<Resource> optionalResource = fetcher.fetch(ERROR_FILE);
+        final Response response = controller.create(HTTP_VERSION);
+
+        // then
+        assertTrue(optionalResource.isPresent());
+        assertEquals(HTTP_VERSION, response.httpVersion());
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.httpStatus());
+        assertEquals(HEADER_CONTENT_TYPE_VALUE, response.headers().get(HEADER_CONTENT_TYPE_KEY));
+        assertEquals(
+                String.valueOf(optionalResource.get().length()),
+                response.headers().get(HEADER_CONTENT_LENGTH_KEY)
+        );
+    }
+}

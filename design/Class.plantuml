@@ -1,0 +1,24 @@
+@startuml
+
+package edu.byohttp {
+
+    class ByoHttp {
+        - port: int
+        - resourcesDirectory: File
+        + {static} main(String[])
+        + ByoHttp(port: int, resourcesDirectory: File)
+        + run()
+    }
+
+    class SocketMessageRunnable {
+        - in: InputStream
+        - out: OutputStream
+        + SocketMessageRunnable(Socket)
+        + run()
+    }
+
+    ByoHttp ..> SocketMessageRunnable
+
+}
+
+@enduml
