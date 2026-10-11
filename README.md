@@ -1,5 +1,17 @@
 # IC-6821 — Diseño de Software
 
+<p align="center">🌐</p>
+
+<p align="center">
+  <img alt="Java" src="https://img.shields.io/badge/Java-ED8B00?style=flat-square">
+  <img alt="Gradle" src="https://img.shields.io/badge/Gradle-02303A?style=flat-square">
+  <img alt="HTTP" src="https://img.shields.io/badge/HTTP-1565C0?style=flat-square">
+</p>
+
+<p align="center">
+  <a href="#servidor-http">Servidor HTTP</a> · <a href="app/">Código</a> · <a href="design/">Diseño</a> · <a href="www/">Recursos web</a>
+</p>
+
 ## Servidor HTTP
 
 Servidor web desarrollado en Java para atender solicitudes HTTP y servir recursos del sistema de archivos. El proyecto trabaja con los métodos GET y HEAD y la construcción de respuestas con sus encabezados y códigos de estado.
